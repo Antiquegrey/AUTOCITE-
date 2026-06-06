@@ -13,6 +13,13 @@ const chatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sources: [
+    {
+      file: String,
+      page: Number,
+      snippet: String,
+    }
+  ]
 });
 const userSchema = new mongoose.Schema({
   name: {

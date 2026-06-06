@@ -10,3 +10,4 @@ connectToDatabase()
     );
   })
   .catch((err) => console.log(err));
+// trigger rebuild with new env settings

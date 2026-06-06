@@ -4,17 +4,18 @@ const TypingAnim = () => {
   return (
     <TypeAnimation
       sequence={[
-        // Same substring at the start will only be typed once, initially
-        "Legal-AI Summarization Chatbot",
-        1000,
-        "Built With OpenAI 🤖",
-        2000,
-        "Summarize your legal texts",
+        "Legal-AI RAG Assistant",
+        1500,
+        "Chat with your legal PDFs 📄",
+        1500,
+        "AI-Powered Legal Research ⚖️",
+        1500,
+        "Get citations & cited sources 🔍",
         1500,
       ]}
       speed={50}
+      className="typing-theme"
       style={{
-        fontSize: "60px",
         color: "white",
         display: "inline-block",
         textShadow: "1px 1px 20px #000",

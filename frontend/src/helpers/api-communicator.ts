@@ -60,8 +60,38 @@ export const deleteUserChats = async () => {
 export const logoutUser = async () => {
   const res = await axios.get("/user/logout");
   if (res.status !== 200) {
-    throw new Error("Unable to delete chats");
+    throw new Error("Unable to logout");
   }
   const data = await res.data;
   return data;
+};
+
+export const uploadDocument = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await axios.post("/document/upload", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  if (res.status !== 201) {
+    throw new Error("Unable to upload document");
+  }
+  return res.data;
+};
+
+export const getUserDocuments = async () => {
+  const res = await axios.get("/document/all");
+  if (res.status !== 200) {
+    throw new Error("Unable to get documents");
+  }
+  return res.data;
+};
+
+export const deleteDocument = async (id: string) => {
+  const res = await axios.delete(`/document/delete/${id}`);
+  if (res.status !== 200) {
+    throw new Error("Unable to delete document");
+  }
+  return res.data;
 };

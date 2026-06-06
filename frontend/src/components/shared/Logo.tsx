@@ -11,20 +11,15 @@ const Logo = () => {
         gap: "15px",
       }}
     >
-      <Link to={"/"}>
-        <img
-          src="openai.png"
-          alt="openai"
-          width={"30px"}
-          height={"30px"}
-          className="image-inverted"
-        />
+      <Link to={"/"} style={{ textDecoration: "none" }}>
+        <span style={{ fontSize: "28px", filter: "drop-shadow(0 0 10px rgba(162, 155, 254, 0.4))" }}>⚖️</span>
       </Link>{" "}
       <Typography
         sx={{
           display: { md: "block", sm: "none", xs: "none" },
           mr: "auto",
           fontWeight: "800",
+          fontFamily: "'Outfit', sans-serif",
           textShadow: "2px 2px 20px #000",
         }}
       >

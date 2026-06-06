@@ -34,11 +34,12 @@ export const userSignup = async (
     await user.save();
 
     // create token and store cookie
+    const isProd = process.env.NODE_ENV === "production";
     res.clearCookie(COOKIE_NAME, {
       httpOnly: true,
-      domain: "localhost",
       signed: true,
       path: "/",
+      ...(isProd ? { sameSite: "none" as const, secure: true } : { domain: "localhost" }),
     });
 
     const token = createToken(user._id.toString(), user.email, "7d");
@@ -46,10 +47,10 @@ export const userSignup = async (
     expires.setDate(expires.getDate() + 7);
     res.cookie(COOKIE_NAME, token, {
       path: "/",
-      domain: "localhost",
       expires,
       httpOnly: true,
       signed: true,
+      ...(isProd ? { sameSite: "none" as const, secure: true } : { domain: "localhost" }),
     });
 
     return res
@@ -79,12 +80,13 @@ export const userLogin = async (
     }
 
     // create token and store cookie
+    const isProd = process.env.NODE_ENV === "production";
 
     res.clearCookie(COOKIE_NAME, {
       httpOnly: true,
-      domain: "localhost",
       signed: true,
       path: "/",
+      ...(isProd ? { sameSite: "none" as const, secure: true } : { domain: "localhost" }),
     });
 
     const token = createToken(user._id.toString(), user.email, "7d");
@@ -92,10 +94,10 @@ export const userLogin = async (
     expires.setDate(expires.getDate() + 7);
     res.cookie(COOKIE_NAME, token, {
       path: "/",
-      domain: "localhost",
       expires,
       httpOnly: true,
       signed: true,
+      ...(isProd ? { sameSite: "none" as const, secure: true } : { domain: "localhost" }),
     });
 
     return res
@@ -145,11 +147,12 @@ export const userLogout = async (
       return res.status(401).send("Permissions didn't match");
     }
 
+    const isProd = process.env.NODE_ENV === "production";
     res.clearCookie(COOKIE_NAME, {
       httpOnly: true,
-      domain: "localhost",
       signed: true,
       path: "/",
+      ...(isProd ? { sameSite: "none" as const, secure: true } : { domain: "localhost" }),
     });
 
     return res
